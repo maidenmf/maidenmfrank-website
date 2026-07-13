@@ -35,21 +35,21 @@ export function Speaking() {
   const topics = [
     {
       title: "Provocateur: Systemic Change Leadership",
-      description: "How provocateur leaders address the world's biggest problems by moving beyond charity to real systems change. Based on the 5Ps framework (Passion, Purpose, Provision, Practice, Paradigm) from \"Provocateurs Not Philanthropists.\"",
+      description: "How provocateur leaders address the world's biggest problems by moving beyond charity to real systems change. Based on the 5Ps framework (Passion, Purpose, Provision, Practice,[...]",
       image: keynoteImage,
       color: "from-sky-400 to-sky-300",
       icon: TrendingUp
     },
     {
       title: "The Strategic Mindset of 21st Century Leaders",
-      description: "Equip leaders to weave disruptions like AI, demographic shifts, and social change into resilient strategies. Learn how to build strategic capacity that grows your mission, influence, and impact.",
+      description: "Equip leaders to weave disruptions like AI, demographic shifts, and social change into resilient strategies. Learn how to build strategic capacity that grows your mission, infl[...]",
       image: strategyImage,
       color: "from-sky-300 to-sky-200",
       icon: Users
     },
     {
       title: "Change You Can Believe",
-      description: "Five powerful strategies to move teams from resistance and polarization to alignment and coherence. Reframe change as travelling together and learn where to leverage for catalytic social impact.",
+      description: "Five powerful strategies to move teams from resistance and polarization to alignment and coherence. Reframe change as travelling together and learn where to leverage for cataly[...]",
       image: workshopImage,
       color: "from-amber-600 to-amber-500",
       icon: Zap,
@@ -57,7 +57,7 @@ export function Speaking() {
     },
     {
       title: "Build Your Legacy as a Changemaker Now",
-      description: "Legacy isn't what you leave behind one day—it's how you live and lead now. Inspire every generation to reclaim the driver's seat of their life and design a legacy of meaningful, joyful impact.",
+      description: "Legacy isn't what you leave behind one day—it's how you live and lead now. Inspire every generation to reclaim the driver's seat of their life and design a legacy of meaningf[...]",
       image: legacyImage,
       color: "from-sky-400 to-teal-300",
       icon: Award
@@ -67,7 +67,7 @@ export function Speaking() {
   const testimonials = [
     {
       quote:
-        "Thank you, Maiden, for hosting a session at CDLI’s Mini Summit on Leadership Conversations. The grounding reflections throughout provided a great space for participants to share their perspectives and deepen their understanding.",
+        "Thank you, Maiden, for hosting a session at CDLI's Mini Summit on Leadership Conversations. The grounding reflections throughout provided a great space for participants to share their p[...]",
       author: "Bolade Afolabi",
       role: "Communications Officer",
       company: "Community Development Learning Initiative",
@@ -75,7 +75,7 @@ export function Speaking() {
     },
     {
       quote:
-        "Maiden spoke to my BUSI367 Social Entrepreneurship class at King's about her insightful book Provocateurs Not Philanthropists. She offered my students a unique perspective on how to turn good intentions into tangible, sustainable change. Her ability to challenge conventional thinking while inspiring innovative solutions left a lasting impression. I am delighted to recommend Maiden as a thought leader, speaker, and collaborator who brings unmatched dedication and a bold vision to everything she undertakes.",
+        "Maiden spoke to my BUSI367 Social Entrepreneurship class at King's about her insightful book Provocateurs Not Philanthropists. She offered my students a unique perspective on how to turn [...]",
       author: "Michael Ferber",
       role: "Dean",
       company: "King's University, Edmonton",
@@ -83,7 +83,7 @@ export function Speaking() {
     },
     {
       quote:
-        "At the first annual Global Hope Conference, Mrs. Manzanal-Frank spoke eloquently on the topic of the business model reset during the time of COVID. The presentation was excellent, highlighting key issues about business evolution focused on diversity of thought, technology, and the promise of the modern era.",
+        "At the first annual Global Hope Conference, Mrs. Manzanal-Frank spoke eloquently on the topic of the business model reset during the time of COVID. The presentation was excellent, highlig[...]",
       author: "Dr. Christopher W. Smithmyer",
       role: "Vice President of International Affairs",
       company: "Brāv Online Conflict Management",
@@ -91,7 +91,7 @@ export function Speaking() {
     },
     {
       quote:
-        "Maiden gave a great presentation to our community of changemakers which includes students, faculty, social entrepreneurs, board members, and members of not-for-profit organizations. She broke down ideas and concepts in a way that captured the attention of the participating audience, and answered questions in a well thought out and professional manner. Her presentation sparked many ideas and raised insightful questions which led to a meaningful discussion for the post-pandemic resurgence.",
+        "Maiden gave a great presentation to our community of changemakers which includes students, faculty, social entrepreneurs, board members, and members of not-for-profit organizations. She b[...]",
       author: "Sally Njoroge",
       role: "Program Lead",
       company: "Trico Changemakers Studio Calgary",
@@ -99,7 +99,7 @@ export function Speaking() {
     },
     {
       quote:
-        "It was my pleasure to join the members of the YEG Passport club for a session facilitated by Maiden. The club members were engaged in a process of developing the values that would guide their actions as a collective. Maiden was an excellent facilitator for this group. She was honest and forthcoming about the challenges the group might face in holding themselves true to their highest aspirations, while strongly affirming the importance of what they were trying to achieve. I found Maiden’s approach to be extremely motivating. She is a courageous and inspirational facilitator who brings out these attributes in others. She asks questions that provoke deep thinking and creates a space where it is safe to share what you hold dear. Maiden has the ability to help a group travel far in its journey of collective growth. I was honoured to be a part of the process and recommend it to others.",
+        "It was my pleasure to join the members of the YEG Passport club for a session facilitated by Maiden. The club members were engaged in a process of developing the values that would guide [...]",
       author: "Donna Barrett",
       role: "District Governor 2021–2022",
       company: "Rotary District 5370",
@@ -107,7 +107,7 @@ export function Speaking() {
     },
     {
       quote:
-        "Maiden was instrumental in leading the first strategy exercise of the Community Reconciliation Committee as a Founding Member. We are grateful for her contribution and her continued support in the work that we do.",
+        "Maiden was instrumental in leading the first strategy exercise of the Community Reconciliation Committee as a Founding Member. We are grateful for her contribution and her continued supp[...]",
       author: "Glen Graham, PhD",
       role: "Assistant Professor; Director, Centre for Peace and Justice",
       company: "Burman University",
@@ -133,6 +133,14 @@ export function Speaking() {
   ];
 
   const duplicatedLogos = [...clientLogos, ...clientLogos];
+
+  const professionalPhotos = [
+    { src: '/meeting-pro-maiden-1.png', label: 'Photo 1 (Filipiniana)' },
+    { src: '/meeting-pro-maiden-2.png', label: 'Photo 2 (Professional portrait)' },
+    { src: '/meeting-pro-maiden-3.png', label: 'Photo 3 (Speaking)' },
+    { src: '/meeting-pro-maiden-4.png', label: 'Photo 4 (Presenting)' },
+    { src: '/meeting-pro-maiden-5.png', label: 'Photo 5 (Provocateurs presentation)' },
+  ];
 
   return (
     <div className="min-h-screen bg-[#DCB69A] relative overflow-hidden">
@@ -351,7 +359,7 @@ export function Speaking() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, rotate: 0, y: -10 }}
-                  className="relative bg-gradient-to-br from-[#DCB69A]/60 via-amber-100/40 to-[#DCB69A]/50 backdrop-blur-xl p-8 shadow-2xl hover:shadow-sky-300/30 transition-all border border-sky-200/20"
+                  className="relative bg-gradient-to-br from-[#DCB69A]/60 via-amber-100/40 to-[#DCB69A]/50 backdrop-blur-xl p-8 shadow-2xl hover:shadow-sky-300/30 transition-all border border-sky-200/30"
                   style={{ 
                     clipPath: index % 2 === 0 
                       ? 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)'
@@ -847,23 +855,23 @@ export function Speaking() {
                   High-resolution images for event promotion, websites, and marketing materials.
                 </p>
 
-                <div className="relative space-y-2">
-                  {[
-                    { src: '/meeting-pro-maiden-1.png', label: 'Photo 1 (Filipiniana)' },
-                    { src: '/meeting-pro-maiden-2.png', label: 'Photo 2 (Professional portrait)' },
-                    { src: '/meeting-pro-maiden-3.png', label: 'Photo 3 (Speaking)' },
-                    { src: '/meeting-pro-maiden-4.png', label: 'Photo 4 (Presenting)' },
-                    { src: '/meeting-pro-maiden-5.png', label: 'Photo 5 (Provocateurs presentation)' },
-                  ].map((img) => (
-                    <a
-                      key={img.src}
-                      href={img.src}
-                      download
-                      className="block w-full px-4 py-3 bg-white/10 hover:bg-sky-400/30 border border-sky-300/40 text-white font-semibold text-sm text-center rounded-lg transition-colors flex items-center justify-center gap-2"
-                    >
-                      <Download className="size-4" />
-                      {img.label}
-                    </a>
+                <div className="relative space-y-3">
+                  {professionalPhotos.map((img) => (
+                    <div key={img.src} className="bg-white/5 rounded-lg overflow-hidden border border-sky-300/30 hover:border-sky-300/60 transition-all">
+                      <img
+                        src={img.src}
+                        alt={img.label}
+                        className="w-full h-auto max-h-48 object-cover"
+                      />
+                      <a
+                        href={img.src}
+                        download
+                        className="block w-full px-4 py-2 bg-white/10 hover:bg-sky-400/30 text-white font-semibold text-xs text-center transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Download className="size-3" />
+                        {img.label}
+                      </a>
+                    </div>
                   ))}
                 </div>
 
@@ -901,7 +909,7 @@ export function Speaking() {
                 </p>
 
                 <div className="relative">
-                  <button className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-xl"
+                  <button className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
                           style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}>
                     <Download className="size-5" />
                     Download Bios
@@ -942,7 +950,7 @@ export function Speaking() {
                 </p>
 
                 <div className="relative">
-                  <button className="w-full px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-xl"
+                  <button className="w-full px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
                           style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}>
                     <Download className="size-5" />
                     Download Materials
@@ -1044,7 +1052,7 @@ export function Speaking() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/contact">
                 <motion.button 
-                  className="px-14 py-7 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black text-2xl shadow-2xl shadow-sky-300/50 flex items-center justify-center gap-4 border-4 border-white/20"
+                  className="px-14 py-7 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black text-2xl shadow-2xl shadow-sky-300/50 flex items-center justify-center gap-4 border-4 border-sky-300/30"
                   style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}
                   whileHover={{ scale: 1.05, boxShadow: '0 0 60px rgba(125, 211, 252, 0.6)' }}
                   whileTap={{ scale: 0.95 }}
