@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Calendar, Sparkles, ArrowRight, Users, TrendingUp, Award, CheckCircle, Play, Star, Zap, Download, FileText, Image as ImageIcon, Briefcase } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { ImageCarousel } from '../components/ImageCarousel';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import speakingHero from 'figma:asset/c3ad2e610c1b884e2724c1241fae2521e5ff3089.png';
 import professionalHeadshot from 'figma:asset/35264ab2aa2e621f0e2b2daf040f944ac88cd26e.png';
@@ -31,6 +31,8 @@ export function Speaking() {
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+
+  const [selectedPhoto, setSelectedPhoto] = useState('/meeting-pro-maiden-1.png');
 
   const topics = [
     {
@@ -202,8 +204,6 @@ export function Speaking() {
           className="absolute inset-0 bg-gradient-to-br from-[#DCB69A]/30 to-transparent"
           style={{ opacity }}
         />
-
-        {/* Removed abstract shapes over hero background for a cleaner photo */}
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32">
@@ -855,23 +855,43 @@ export function Speaking() {
                   High-resolution images for event promotion, websites, and marketing materials.
                 </p>
 
-                <div className="relative space-y-3">
+                {/* Main Image Display */}
+                <div className="relative mb-6 rounded-lg overflow-hidden border-2 border-sky-300/40 bg-black/20">
+                  <motion.img
+                    key={selectedPhoto}
+                    src={selectedPhoto}
+                    alt="Professional photo preview"
+                    className="w-full h-auto object-cover max-h-64 sm:max-h-72 md:max-h-80"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+
+                {/* Photo Thumbnails and Download Buttons */}
+                <div className="relative space-y-2">
                   {professionalPhotos.map((img) => (
-                    <div key={img.src} className="bg-white/5 rounded-lg overflow-hidden border border-sky-300/30 hover:border-sky-300/60 transition-all">
-                      <img
-                        src={img.src}
-                        alt={img.label}
-                        className="w-full h-auto max-h-48 object-cover"
-                      />
+                    <motion.button
+                      key={img.src}
+                      onClick={() => setSelectedPhoto(img.src)}
+                      className={`block w-full px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all border flex items-center justify-between gap-2 ${
+                        selectedPhoto === img.src
+                          ? 'bg-sky-400/40 border-sky-300/80 text-white'
+                          : 'bg-white/10 hover:bg-sky-400/30 border-sky-300/40 text-white'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="flex-1 text-left">{img.label}</span>
                       <a
                         href={img.src}
                         download
-                        className="block w-full px-4 py-2 bg-white/10 hover:bg-sky-400/30 text-white font-semibold text-xs text-center transition-colors flex items-center justify-center gap-2"
+                        className="flex-shrink-0 inline-flex items-center gap-1"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <Download className="size-3" />
-                        {img.label}
+                        <Download className="size-3 sm:size-4" />
                       </a>
-                    </div>
+                    </motion.button>
                   ))}
                 </div>
 
