@@ -42,7 +42,7 @@ export function Coaching() {
       description: "Coaching for leaders who want a trusted thinking partner on strategy, change, and legacy. One-to-one or small group formats focused on clarity, resilience, and courageous action in complex environments.",
       features: ["One-to-one or small group formats", "Focus on strategy, change, and legacy", "Build clarity, resilience, and courageous action", "Includes cohorts and retreats"],
       buttonText: "Learn More",
-      buttonLink: null,
+      buttonLink: "/contact",
       image: "/coaching-executive-coaching.png",
       icon: Globe,
       emoji: "💼"
@@ -55,7 +55,7 @@ export function Coaching() {
       description: "For high net-worth individuals ready to take the challenge of highly customized support and delightful educational experiences. Together, you prioritize where you can truly move the needle, and design a portfolio of actions that match your intentions.",
       features: ["Invite-only community", "Monthly coaching sessions", "Delightful educational experiences", "Exclusive retreats and events", "Highly customized support"],
       buttonText: "Request Invitation",
-      buttonLink: null,
+      buttonLink: "/contact",
       image: provocateursNexusBg,
       icon: Rocket,
       emoji: "👑"
@@ -313,8 +313,8 @@ export function Coaching() {
                       {pkg.buttonLink ? (
                         <motion.a
                           href={pkg.buttonLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          target={pkg.buttonLink.startsWith('http') ? '_blank' : undefined}
+                          rel={pkg.buttonLink.startsWith('http') ? 'noopener noreferrer' : undefined}
                           className={`w-full py-4 bg-gradient-to-r ${pkg.color} text-white font-black text-lg shadow-lg rounded-xl flex items-center justify-center gap-2`}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -467,7 +467,7 @@ export function Coaching() {
                 </div>
                 <div className="bg-white/10 border border-white/15 rounded-2xl p-6">
                   <div className="font-black text-white text-xl mb-2">From good intentions to systems impact</div>
-                  <div className="text-white/70">A provocateur lens that helps leaders lead beyond charity.</div>
+                  <div className="text-white/70">A provocateur's lens that helps leaders move beyond charity.</div>
                 </div>
                 <div className="bg-white/10 border border-white/15 rounded-2xl p-6">
                   <div className="font-black text-white text-xl mb-2">From "busy" to strategic</div>
