@@ -89,13 +89,13 @@ export function About() {
         />
       </div>
 
-      {/* Hero - text on left with a more naturally scaled portrait on larger screens */}
+      {/* Hero - text on left with a more naturally scaled portrait on desktop */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={aboutHeroImage}
             alt="Maiden Manzanal-Frank in traditional Filipino attire"
-            className="h-full w-full object-cover object-[68%_center] md:ml-auto md:w-[68%] md:object-contain md:object-right-bottom md:[mask-image:linear-gradient(to_right,transparent_0%,black_22%)] lg:w-[62%] xl:w-[58%]"
+            className="h-full w-full object-cover object-[68%_center] lg:ml-auto lg:w-[62%] lg:object-contain lg:object-right-bottom lg:[mask-image:linear-gradient(to_right,transparent_0%,black_22%)] xl:w-[58%]"
           />
           {/* Stronger gradient on left so text is readable; lighter on right so face shows */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 from-0% via-black/40 via-45% to-black/20 to-100%" />
