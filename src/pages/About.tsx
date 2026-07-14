@@ -96,7 +96,6 @@ export function About() {
             src={aboutHeroImage}
             alt="Maiden Manzanal-Frank in traditional Filipino attire"
             className="w-full h-full object-contain object-right p-6 md:p-10 lg:p-14"
-            style={{ clipPath: 'inset(0 0 14% 0)' }}
           />
           {/* Stronger gradient on left so text is readable; lighter on right so face shows */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 from-0% via-black/40 via-45% to-black/20 to-100%" />
