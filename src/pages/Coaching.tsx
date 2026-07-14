@@ -467,7 +467,7 @@ export function Coaching() {
                 </div>
                 <div className="bg-white/10 border border-white/15 rounded-2xl p-6">
                   <div className="font-black text-white text-xl mb-2">From good intentions to systems impact</div>
-                  <div className="text-white/70">A provocateur lens that helps leaders lead beyond charity.</div>
+                  <div className="text-white/70">A provocateur's lens that helps leaders move beyond charity.</div>
                 </div>
                 <div className="bg-white/10 border border-white/15 rounded-2xl p-6">
                   <div className="font-black text-white text-xl mb-2">From "busy" to strategic</div>
