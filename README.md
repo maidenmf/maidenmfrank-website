@@ -1,5 +1,5 @@
 
-  # Sample Website 2
+  # maidenmfrank.com
 
   This is a code bundle for Sample Website 2. The original project is available at https://www.figma.com/design/C1LWNhZUDL0br3lVMlCeBQ/Sample-Website-2.
 
