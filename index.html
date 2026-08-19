@@ -9,7 +9,26 @@
 
     <body>
       <div id="root"></div>
+      <!-- Netlify scans static HTML at deploy time and cannot detect the React-rendered form. -->
+      <form name="contact-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact-inquiry" />
+        <input type="text" name="bot-field" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <select name="reason">
+          <option value="speaking">Speaking &amp; Keynote</option>
+          <option value="coaching">Coaching &amp; Advisory</option>
+          <option value="book-sample">Book Sample / Free Chapter</option>
+          <option value="strategy">Strategy &amp; Change Support</option>
+          <option value="partnership">Partnerships &amp; Collaborations</option>
+          <option value="workshop">Workshop &amp; Facilitation</option>
+          <option value="podcast">Podcast / Media</option>
+          <option value="discovery-call">Schedule a Discovery Call</option>
+          <option value="other">General Questions / Other</option>
+        </select>
+        <textarea name="message"></textarea>
+      </form>
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
-  

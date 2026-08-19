@@ -6,14 +6,41 @@ import professionalHeadshot from 'figma:asset/35264ab2aa2e621f0e2b2daf040f944ac8
 
 export function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [chapterSubmitted, setChapterSubmitted] = useState(false);
   const [blogEmail, setBlogEmail] = useState('');
   const [blogSubmitted, setBlogSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const encodedData = new URLSearchParams();
+    formData.forEach((value, key) => encodedData.append(key, String(value)));
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodedData.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
+
+      form.reset();
+      setFormSubmitted(true);
+    } catch (error) {
+      console.error('Unable to submit contact form:', error);
+      setSubmitError('Your message could not be sent. Please try again or email maiden@globalstakesconsulting.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChapterSubmit = (e: React.FormEvent) => {
@@ -231,7 +258,14 @@ export function Contact() {
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form name="contact-inquiry" method="POST" onSubmit={handleSubmit} className="space-y-6">
+                    <input type="hidden" name="form-name" value="contact-inquiry" />
+                    <div className="absolute h-px w-px overflow-hidden whitespace-nowrap" aria-hidden="true">
+                      <label>
+                        Don&apos;t fill this out if you&apos;re human:
+                        <input name="bot-field" type="text" tabIndex={-1} autoComplete="off" />
+                      </label>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -239,6 +273,7 @@ export function Contact() {
                         </label>
                         <input
                           type="text"
+                          name="name"
                           required
                           placeholder="Your name"
                           className="w-full px-4 py-3 bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 transition-all rounded-lg"
@@ -250,6 +285,7 @@ export function Contact() {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           required
                           placeholder="your@email.com"
                           className="w-full px-4 py-3 bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 transition-all rounded-lg"
@@ -264,6 +300,7 @@ export function Contact() {
                         </label>
                         <input
                           type="tel"
+                          name="phone"
                           placeholder="+1 (555) 000-0000"
                           className="w-full px-4 py-3 bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 transition-all rounded-lg"
                         />
@@ -273,6 +310,7 @@ export function Contact() {
                           Reason to connect *
                         </label>
                         <select
+                          name="reason"
                           required
                           className="w-full px-4 py-3 bg-white border border-slate-200 text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/40 transition-all rounded-lg"
                         >
@@ -295,6 +333,7 @@ export function Contact() {
                         Message *
                       </label>
                       <textarea
+                        name="message"
                         required
                         rows={6}
                         placeholder="Tell me about your needs and how I can help..."
@@ -302,14 +341,21 @@ export function Contact() {
                       />
                     </div>
 
+                    {submitError && (
+                      <p role="alert" className="text-sm text-red-700 text-center">
+                        {submitError}
+                      </p>
+                    )}
+
                     <motion.button
                       type="submit"
+                      disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="w-full py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-black text-lg flex items-center justify-center gap-3 shadow-md hover:shadow-teal-500/40 transition-all rounded-xl"
                     >
                       <Send className="size-5" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </motion.button>
 
                     <p className="text-sm text-slate-500 text-center">
