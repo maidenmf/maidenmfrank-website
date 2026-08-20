@@ -140,19 +140,11 @@ export function Features() {
             <div className="relative bg-black rounded-3xl overflow-hidden shadow-2xl border-4 border-[#e0b384]">
               <div className="relative pt-[56.25%] overflow-hidden">
                 <iframe
-                  className="absolute border-0"
-                  src="https://www.youtube.com/embed/OXGO3GhPpE0?autoplay=1&mute=1&loop=1&playlist=OXGO3GhPpE0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=180&end=300"
-                  title="Speaking in Action"
-                  allow="autoplay; encrypted-media"
-                  style={{ 
-                    pointerEvents: 'none',
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%) scale(1.3)',
-                  }}
+                  className="absolute inset-0 w-full h-full border-0"
+                  src="https://www.youtube.com/embed/nL2Los_QlO0?rel=0&playsinline=1"
+                  title="On Strategy, Change and Leadership – Speaker Reel – Maiden Manzanal-Frank"
+                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allowFullScreen
                 />
               </div>
             </div>
@@ -186,7 +178,7 @@ export function Features() {
               </div>
             </div>
             <blockquote className="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">
-              "Permission not required. The world needs provocateurs who challenge the status quo and turn good intentions into real, measurable global impact."
+              "Permission is not required. The world needs provocateurs who challenge the status quo and turn good intentions into real, measurable global impact."
             </blockquote>
             <div className="h-1 w-20 bg-teal-600 mx-auto" />
           </motion.div>

@@ -6272,3 +6272,58 @@ html {
     opacity: .5;
   }
 }
+
+.about-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 63.999rem) {
+  .about-hero-image {
+    object-position: right center;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .about-hero {
+    background: linear-gradient(135deg, #022c22 0%, #082f49 55%, #3d2817 100%);
+  }
+
+  .about-hero-image {
+    display: none;
+  }
+
+  .about-hero-content {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .about-hero-actions,
+  .about-hero-action,
+  .about-hero-action-button {
+    width: 100%;
+  }
+
+  .about-hero-action {
+    display: block;
+  }
+}
+
+@media (min-width: 64rem) {
+  .contact-hero-image-card {
+    width: 100%;
+    max-width: none;
+  }
+}
+/* Keep the final Media Features row visibly inset inside its white card. */
+.media-features-container {
+  padding-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+  .media-features-container {
+    padding-bottom: 32px;
+  }
+}

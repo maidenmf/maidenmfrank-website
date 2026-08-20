@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BookOpen, Star, Award, Globe, Users, ExternalLink, FileText, Sparkles, Quote, ShoppingCart, Mail } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import bookCover from 'figma:asset/e6b9490ca762ff0fc27b68a70f0166a32d5dfa0e.png';
 import portraitImage from 'figma:asset/23fc90c98c532984255573344134df44fc62b5af.png';
 
@@ -30,22 +30,27 @@ const frankInsightsExamples = ['Circularity', 'Laugh at Rejections', 'Help Yours
 
 const mediaFeatures: { title: string; url: string }[] = [
   { title: 'On Provocateurs with Above the Bar Podcast', url: 'https://theabovethebarpodcast.com/the-above-the-bar-youtube-channel/' },
-  { title: 'Community Building for Social Impact (LedByCommunity AMA)', url: 'https://www.ledby.community/events-calendar/post/ama-sessions-with-community-leaders-maiden-manzanal-frank-qH7DTRup7gzL0xW' },
   { title: 'On Provocateurs with IDEAS Podcast', url: 'https://davidpasqualone.com/MaidenFrank' },
   { title: 'On Provocateurs and more (Business as UNusual)', url: 'https://podcasts.apple.com/us/podcast/business-as-unusual/id1610022224' },
   { title: 'On Provocateurs with Rainforest Alberta (LIBI)', url: 'https://www.podbean.com/site/EpisodeDownload/PB142866E6ADZA' },
   { title: 'On Provocateurs with the World Fair Trade Organization', url: 'https://wfto.com/podcast/provocateurs-not-philanthropists' },
   { title: 'On Provocateurs (YouTube)', url: 'https://www.youtube.com/watch?v=FzDfWZBTqtc' },
-  { title: 'Juris North 2022 Roundtables on Sustainability', url: 'https://www.facebook.com/JurisNorthDiscussionGroup/videos/946692522606823' },
-  { title: 'Businesses Thriving in Post-COVID (Ticker TV Australia)', url: 'https://www.maidenmfrank.com/uploads/5/1/6/8/51685601/tickertvedited.mp4' },
+  { title: 'Juris North 2022 Roundtables on Sustainability', url: 'https://www.facebook.com/share/v/1HKZAbW1fb/' },
+  { title: 'CDLI Mini-Summit: Community Renewal & Strengthening', url: 'https://youtu.be/CegzIbyYdlk' },
+  { title: 'Businesses Thriving in Post-COVID (Ticker TV Australia)', url: 'https://youtu.be/M7gE8iSNtow' },
   { title: 'On Provocateurs (Additional YouTube)', url: 'https://www.youtube.com/watch?v=r-XhYs-xvBE' }
 ];
 
 export function Books() {
+  const location = useLocation();
   const [hoveredPrinciple, setHoveredPrinciple] = useState<number | null>(null);
   const [hoveredChapter, setHoveredChapter] = useState<number | null>(null);
-  const [blogEmail, setBlogEmail] = useState(''); 
-  const [blogSubmitted, setBlogSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (location.hash === '#additional-resources') {
+      document.getElementById('additional-resources')?.scrollIntoView();
+    }
+  }, [location.hash]);
 
   const keyTakeaways = [
     {
@@ -600,7 +605,7 @@ export function Books() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-5xl mx-auto rounded-3xl shadow-2xl border border-stone-200 bg-white overflow-hidden"
+            className="media-features-container max-w-5xl mx-auto rounded-3xl shadow-2xl border border-stone-200 bg-white overflow-hidden"
           >
             {/* Top: curved teal accent + section title for whole design */}
             <div className="h-32 bg-gradient-to-br from-teal-400/90 via-teal-300/80 to-cyan-300/70 relative flex items-center justify-center">
@@ -729,7 +734,7 @@ export function Books() {
             </div>
 
             {/* Bottom: clickable featured boxes */}
-            <div className="px-6 lg:px-8 pb-8 pt-2">
+            <div className="px-6 lg:px-8 pt-4 lg:pt-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-4 text-center">
                 Watch or listen — click to open
               </p>
@@ -775,15 +780,14 @@ export function Books() {
           </motion.h2>
 
           {/* Articles & White Papers - two cards like testimonials */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16 items-stretch">
             <motion.div
-              initial={{ opacity: 0, y: 50, rotate: -2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, rotate: 0, y: -5 }}
+              whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-gradient-to-br from-stone-100 to-amber-50 border-4 border-teal-600 p-8 shadow-2xl hover:shadow-teal-500/50 transition-all"
-              style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}
+              className="h-full bg-gradient-to-br from-stone-100 to-amber-50 border-4 border-teal-600 p-8 shadow-2xl hover:shadow-teal-500/50 transition-all"
             >
               <div className="size-14 rounded-full bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center mb-6 shadow-lg">
                 <FileText className="size-7 text-white" />
@@ -793,17 +797,18 @@ export function Books() {
               <h4 className="text-lg font-bold text-teal-700 mb-3">Strategy & Change</h4>
               <ul className="space-y-2 mb-6">
                 {strategyChangeArticles.map((item, i) => (
-                  <li key={i}>
+                  <li key={i} className="min-h-9 flex items-start">
                     {item.url.includes('maidenmfrank.com') ? (
-                      <div className="text-stone-700 text-sm">
-                        {item.title}
+                      <div className="text-stone-700 text-sm flex items-start gap-2 py-1">
+                        <ExternalLink aria-hidden="true" className="size-3.5 mt-0.5 shrink-0 invisible" />
+                        <span>{item.title}</span>
                       </div>
                     ) : (
                       <a
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-stone-700 hover:text-teal-600 transition-colors flex items-start gap-2 group text-sm"
+                        className="text-stone-700 hover:text-teal-600 transition-colors flex items-start gap-2 group text-sm py-1"
                       >
                         <ExternalLink className="size-3.5 mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-teal-600" />
                         <span className="group-hover:underline">{item.title}</span>
@@ -815,17 +820,18 @@ export function Books() {
               <h4 className="text-lg font-bold text-teal-700 mb-3">Impact & Leadership</h4>
               <ul className="space-y-2">
                 {impactLeadershipArticles.map((item, i) => (
-                  <li key={i}>
+                  <li key={i} className="min-h-9 flex items-start">
                     {item.url.includes('maidenmfrank.com') ? (
-                      <div className="text-stone-700 text-sm">
-                        {item.title}
+                      <div className="text-stone-700 text-sm flex items-start gap-2 py-1">
+                        <ExternalLink aria-hidden="true" className="size-3.5 mt-0.5 shrink-0 invisible" />
+                        <span>{item.title}</span>
                       </div>
                     ) : (
                       <a
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-stone-700 hover:text-teal-600 transition-colors flex items-start gap-2 group text-sm"
+                        className="text-stone-700 hover:text-teal-600 transition-colors flex items-start gap-2 group text-sm py-1"
                       >
                         <ExternalLink className="size-3.5 mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-teal-600" />
                         <span className="group-hover:underline">{item.title}</span>
@@ -838,13 +844,12 @@ export function Books() {
 
             {/* The Frank Insights Blog - same card style */}
             <motion.div
-              initial={{ opacity: 0, y: 50, rotate: 2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, rotate: 0, y: -5 }}
+              whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-gradient-to-br from-stone-100 to-amber-50 border-4 border-teal-600 p-8 shadow-2xl hover:shadow-teal-500/50 transition-all"
-              style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}
+              className="h-full bg-gradient-to-br from-stone-100 to-amber-50 border-4 border-teal-600 p-8 shadow-2xl hover:shadow-teal-500/50 transition-all"
             >
               <div className="size-14 rounded-full bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center mb-6 shadow-lg">
                 <BookOpen className="size-7 text-white" />
@@ -900,79 +905,29 @@ export function Books() {
                 </Link>
               </div>
               <h4 className="text-lg font-bold text-[#09090b] mb-3">Get the weekly blog in your inbox</h4>
-              {blogSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="py-4 px-4 bg-teal-100 border-2 border-teal-400 text-teal-800 text-center font-semibold text-sm"
-                  style={{ clipPath: 'polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%)' }}
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-3" aria-label="Frank Insights subscription coming soon">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  disabled
+                  aria-disabled="true"
+                  className="w-full px-4 py-3 bg-white border-2 border-stone-200 text-[#09090b] placeholder:text-stone-400"
+                  style={{ clipPath: 'polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%)', opacity: 0.6, cursor: 'not-allowed' }}
+                />
+                <motion.button
+                  type="submit"
+                  disabled
+                  aria-disabled="true"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-black shadow-lg"
+                  style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)', opacity: 0.6, cursor: 'not-allowed' }}
                 >
-                  Thanks! Check your inbox to confirm your subscription.
-                </motion.div>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (blogEmail.trim()) setBlogSubmitted(true);
-                  }}
-                  className="space-y-3"
-                >
-                  <input
-                    type="email"
-                    value={blogEmail}
-                    onChange={(e) => setBlogEmail(e.target.value)}
-                    placeholder="Your email"
-                    required
-                    className="w-full px-4 py-3 bg-white border-2 border-stone-200 text-[#09090b] placeholder:text-stone-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400/30"
-                    style={{ clipPath: 'polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%)' }}
-                  />
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-black shadow-lg"
-                    style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}
-                  >
-                    Subscribe
-                  </motion.button>
-                </form>
-              )}
+                  Subscribe
+                </motion.button>
+                <p className="text-center text-sm font-semibold text-teal-800">Coming soon</p>
+              </form>
             </motion.div>
           </div>
 
-          {/* Free Resources - single card like testimonial */}
-          <motion.div
-            initial={{ opacity: 0, y: 50, rotate: -2 }}
-            whileInView={{ opacity: 1, y: 0, rotate: -2 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.02, rotate: 0, y: -5 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-3xl mx-auto bg-gradient-to-br from-stone-100 to-amber-50 border-4 border-teal-600 p-8 shadow-2xl hover:shadow-teal-500/50 transition-all"
-            style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}
-          >
-            <h3 className="text-2xl font-black text-[#09090b] mb-4">Free Resources</h3>
-            <p className="text-stone-600 mb-6">
-              Get the weekly Frank Insights blog and a free chapter of <em>Provocateurs, Not Philanthropists</em>.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#additional-resources"
-                className="inline-flex items-center gap-2 px-6 py-4 bg-white/80 border-2 border-teal-600 text-teal-800 font-bold hover:bg-teal-50 transition-colors"
-                style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}
-              >
-                <Mail className="size-5" />
-                Subscribe to the blog (above)
-              </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-black shadow-lg hover:shadow-teal-500/30 transition-all"
-                style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}
-              >
-                <BookOpen className="size-5" />
-                Get free chapter
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
 

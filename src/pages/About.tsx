@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 // Photos (replace any of these with your own assets as needed)
 import professionalHeadshot from 'figma:asset/35264ab2aa2e621f0e2b2daf040f944ac88cd26e.png';
-import aboutHeroImage from 'figma:asset/3dbae3d3c7af5a24a5ce3b8ab6fad7dbf5f95cd6.png';
+import aboutHeroImage from '../assets/Meet Maiden Hero.png';
 import speakingHero from 'figma:asset/c3ad2e610c1b884e2724c1241fae2521e5ff3089.png';
 import workshopImage from 'figma:asset/e6786f3dc30a294c8ea6ce7eacf1043ec8e6e90a.png';
 import awardCeremonyImage from 'figma:asset/96aa51d201480effeed10193187b23a1fca7ab54.png';
@@ -90,18 +90,18 @@ export function About() {
       </div>
 
       {/* Hero - text on left so photo/face is visible on the right */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="about-hero relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={aboutHeroImage}
             alt="Maiden Manzanal-Frank in traditional Filipino attire"
-            className="w-full h-full object-cover object-right"
+            className="about-hero-image"
           />
           {/* Stronger gradient on left so text is readable; lighter on right so face shows */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 from-0% via-black/40 via-45% to-black/20 to-100%" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-28">
+        <div className="about-hero-content relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-28">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,10 +130,10 @@ export function About() {
               <span className="font-semibold">strategy, change, and impact</span> to help leaders build on-purpose organizations and deliver outcomes that truly matter.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6">
-              <Link to="/contact">
+            <div className="about-hero-actions flex flex-col sm:flex-row gap-6">
+              <Link to="/contact" className="about-hero-action">
                 <motion.button
-                  className="px-10 py-5 bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-300 text-white font-black text-lg hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-2xl"
+                  className="about-hero-action-button px-10 py-5 bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-300 text-white font-black text-lg hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-2xl"
                   style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -144,9 +144,9 @@ export function About() {
                 </motion.button>
               </Link>
 
-              <Link to="/speaking">
+              <Link to="/speaking" className="about-hero-action">
                 <motion.button
-                  className="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-emerald-200/60 text-white font-black text-lg hover:bg-white/15 transition-all flex items-center justify-center gap-3"
+                  className="about-hero-action-button px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-emerald-200/60 text-white font-black text-lg hover:bg-white/15 transition-all flex items-center justify-center gap-3"
                   style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -290,15 +290,24 @@ export function About() {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-emerald-50 bg-emerald-900/5">
                   <img src={professionalHeadshot} alt="Maiden Manzanal-Frank headshot" className="w-full h-full object-contain" />
                   <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
-                    <div className="text-white font-black text-2xl">Leadership speaker</div>
+                    <div className="text-white font-black text-2xl">Leadership Speaker</div>
                     <div className="text-white/70 text-lg font-semibold">Strategy • Change • Impact</div>
                   </div>
                 </div>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-emerald-50 bg-emerald-900/5">
-                  <img src={workshopImage} alt="Maiden facilitating a workshop" className="w-full h-full object-cover object-top" />
+                  <img
+                    src={workshopImage}
+                    alt="Maiden facilitating a workshop"
+                    className="w-full h-full object-cover object-top"
+                    style={{
+                      objectPosition: 'center top',
+                      transform: 'scale(1.45)',
+                      transformOrigin: 'center top',
+                    }}
+                  />
                   <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
                     <div className="text-white font-black text-2xl">Facilitator</div>
-                    <div className="text-white/70 text-lg font-semibold">Interactive, reflective sessions</div>
+                    <div className="text-white/70 text-lg font-semibold">Outcomes-based transformation for clients</div>
                   </div>
                 </div>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-emerald-50 bg-emerald-900/5">
@@ -419,7 +428,7 @@ export function About() {
 
             <div className="relative text-center max-w-3xl mx-auto">
               <h3 className="text-5xl lg:text-7xl font-black text-white tracking-tighter leading-[0.9] mb-6">
-                Let’s build an on-purpose organization.
+                Let’s build your on-purpose organization
               </h3>
               <p className="text-white/80 text-lg lg:text-xl leading-relaxed mb-10">
                 If you’re ready to move beyond “good is good enough,” let’s design the strategy and change journey your leaders can believe in.

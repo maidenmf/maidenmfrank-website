@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 
 export function Hero() {
   const ref = useRef(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -16,6 +17,7 @@ export function Hero() {
 
   // Rotating words effect
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [useEndOverlay, setUseEndOverlay] = useState(false);
   const rotatingWords = ['to Lead', 'to Grow', 'to Inspire', 'for Good'];
   
   useEffect(() => {
@@ -33,6 +35,22 @@ export function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const syncOverlayToVideo = () => {
+      const currentTime = heroVideoRef.current?.currentTime ?? 0;
+      setUseEndOverlay((previous) => {
+        const next = currentTime >= 4.05;
+        return previous === next ? previous : next;
+      });
+      animationFrameId = requestAnimationFrame(syncOverlayToVideo);
+    };
+
+    animationFrameId = requestAnimationFrame(syncOverlayToVideo);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-[#DCB69A]">
       {/* Video Background with Parallax */}
@@ -40,21 +58,22 @@ export function Hero() {
         className="absolute inset-0"
         style={{ y }}
       >
-        {/* YouTube Video Embed - Playing from 7:30 to 8:00 */}
-        <iframe
-          src="https://www.youtube.com/embed/OXGO3GhPpE0?autoplay=1&mute=1&loop=1&playlist=OXGO3GhPpE0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=450&end=480"
-          className="w-full h-full border-0"
-          allow="autoplay; encrypted-media"
-          style={{ 
-            pointerEvents: 'none',
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%) scale(1.3)',
-            objectFit: 'cover'
-          }}
+        <video
+          ref={heroVideoRef}
+          src="/videos/hero-video.mp4"
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+
+        <div
+          className={`absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/80 transition-opacity duration-700 ease-in-out ${useEndOverlay ? 'opacity-0' : 'opacity-100'}`}
+        />
+        <div
+          className={`absolute inset-0 bg-black/60 transition-opacity duration-700 ease-in-out ${useEndOverlay ? 'opacity-100' : 'opacity-0'}`}
         />
         
         <div className="absolute inset-0 bg-gradient-to-br from-[#DCB69A]/50 via-[#DCB69A]/20 to-[#DCB69A]/60" />
@@ -148,7 +167,10 @@ export function Hero() {
             >
               <div className="flex items-center gap-3">
                 <Sparkles className="size-6 text-sky-300 fill-sky-300" />
-                <div className="px-4 py-2 rounded-full border border-sky-200/40 backdrop-blur-md bg-sky-100/10 text-sky-50 text-sm font-medium">
+                <div
+                  className="px-4 py-2 rounded-full border border-sky-200/50 backdrop-blur-md bg-black/25 text-sky-50 text-sm font-medium"
+                  style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.4)' }}
+                >
                   Author · Speaker · Changemaker
                 </div>
               </div>
@@ -164,7 +186,10 @@ export function Hero() {
               >
                 <div className="flex flex-col gap-4">
                   {/* Static "Provoke" */}
-                  <span className="text-white drop-shadow-lg">
+                  <span
+                    className="text-white"
+                    style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.35)' }}
+                  >
                     Provoke
                   </span>
                   
@@ -181,6 +206,7 @@ export function Hero() {
                         style={{
                           WebkitBackgroundClip: 'text',
                           backgroundClip: 'text',
+                          filter: 'drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55))',
                         }}
                       >
                         {rotatingWords[currentIndex]}
@@ -196,7 +222,8 @@ export function Hero() {
               initial={{ opacity: 0, x: 100, rotate: 5 }}
               animate={{ opacity: 1, x: 0, rotate: 2 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute top-[400px] right-0 max-w-xl text-lg lg:text-xl text-sky-50/95 leading-relaxed italic border-l-4 border-sky-300 pl-6 bg-[#e8d5b7]/10 backdrop-blur-sm p-6 rounded-2xl"
+              className="absolute top-[400px] right-0 max-w-xl text-lg lg:text-xl text-sky-50/95 leading-relaxed italic border-l-4 border-sky-300 pl-6 bg-black/25 backdrop-blur-sm p-6 rounded-2xl"
+              style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.45)' }}
             >
               Challenging changemakers to lead with purpose, innovation, and excellence. Author of <em>Provocateurs Not Philanthropists</em>.
             </motion.p>
@@ -211,7 +238,7 @@ export function Hero() {
               <Link to="/speaking">
                 <motion.div 
                   whileHover={{ x: 20, rotate: 2 }}
-                  className="px-8 py-4 bg-gradient-to-r from-[#7dd3fc] to-[#bae6fd] text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-sky-300/50 transition-all flex items-center gap-2 group w-fit"
+                  className="px-8 py-4 bg-gradient-to-r from-[#7dd3fc] to-[#bae6fd] text-white font-semibold rounded-full shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-sky-300/50 transition-all flex items-center gap-2 group w-fit"
                 >
                   <span>Book a Speaking Engagement</span>
                   <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
@@ -220,7 +247,7 @@ export function Hero() {
               <Link to="/contact">
                 <motion.div 
                   whileHover={{ x: 40, rotate: -2 }}
-                  className="px-8 py-4 bg-[#e8d5b7]/20 backdrop-blur-md text-sky-50 font-semibold rounded-full border-2 border-sky-200/40 hover:bg-[#e8d5b7]/30 hover:border-sky-200/60 transition-all flex items-center gap-2 w-fit ml-16"
+                  className="px-8 py-4 bg-black/20 backdrop-blur-md text-sky-50 font-semibold rounded-full border-2 border-sky-200/60 shadow-lg shadow-black/20 hover:bg-[#e8d5b7]/30 hover:border-sky-200/70 transition-all flex items-center gap-2 w-fit ml-16"
                 >
                   <Calendar className="size-5" />
                   <span>Schedule Coaching</span>
@@ -238,8 +265,19 @@ export function Hero() {
         transition={{ duration: 2, repeat: Infinity }}
       >
         <div className="flex flex-col items-center gap-2">
-          <div className="text-sky-200/70 text-sm font-medium">Scroll</div>
-          <svg className="w-6 h-10 text-sky-200/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div
+            className="text-sky-200/90 text-sm font-medium"
+            style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.45)' }}
+          >
+            Scroll
+          </div>
+          <svg
+            className="w-6 h-10 text-sky-200/90"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            style={{ filter: 'drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45))' }}
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>

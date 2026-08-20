@@ -6,8 +6,8 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function TechStack() {
   const stats = [
-    { icon: Target, number: "500+", label: "Organizations Served" },
-    { icon: Users, number: "50K+", label: "Leaders Developed" },
+    { icon: Target, number: "100", label: "Organizations Served" },
+    { icon: Users, number: "10K", label: "Leaders Developed" },
     { icon: Award, number: "15+", label: "Years of Impact" },
   ];
 
@@ -355,7 +355,8 @@ export function TechStack() {
                   </motion.div>
                 </Link>
 
-                <motion.button 
+                <Link to="/books#additional-resources">
+                <motion.div
                   whileHover={{ x: 10, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full px-10 py-5 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all text-left flex items-center justify-between group"
@@ -364,7 +365,8 @@ export function TechStack() {
                   <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                   </svg>
-                </motion.button>
+                </motion.div>
+                </Link>
               </div>
 
               <div className="mt-8 pt-8 border-t border-white/20">

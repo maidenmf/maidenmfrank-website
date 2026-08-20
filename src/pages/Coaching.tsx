@@ -10,6 +10,7 @@ import provocateursNexusBg from 'figma:asset/0e04bfd2134a7243f6a2cef96460d5fc5c1
 
 export function Coaching() {
   const heroRef = useRef(null);
+  const programsRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -29,7 +30,7 @@ export function Coaching() {
       description: "Risk-free opportunity to experience Maiden's coaching approach. Perfect for leaders who want to explore working with a trusted thinking partner on strategy, change, and legacy.",
       features: ["Risk-free with refundable deposit", "One-on-one coaching format", "Focus on clarity and courageous action"],
       buttonText: "Get Started",
-      buttonLink: "https://5day-challenge-mmf.replit.app",
+      buttonLink: "/contact",
       image: challengeImage,
       icon: Target,
       emoji: "🎯"
@@ -42,7 +43,7 @@ export function Coaching() {
       description: "Coaching for leaders who want a trusted thinking partner on strategy, change, and legacy. One-to-one or small group formats focused on clarity, resilience, and courageous action in complex environments.",
       features: ["One-to-one or small group formats", "Focus on strategy, change, and legacy", "Build clarity, resilience, and courageous action", "Includes cohorts and retreats"],
       buttonText: "Learn More",
-      buttonLink: null,
+      buttonLink: "/contact",
       image: "/coaching-executive-coaching.png",
       icon: Globe,
       emoji: "💼"
@@ -55,7 +56,7 @@ export function Coaching() {
       description: "For high net-worth individuals ready to take the challenge of highly customized support and delightful educational experiences. Together, you prioritize where you can truly move the needle, and design a portfolio of actions that match your intentions.",
       features: ["Invite-only community", "Monthly coaching sessions", "Delightful educational experiences", "Exclusive retreats and events", "Highly customized support"],
       buttonText: "Request Invitation",
-      buttonLink: null,
+      buttonLink: "/contact",
       image: provocateursNexusBg,
       icon: Rocket,
       emoji: "👑"
@@ -131,7 +132,7 @@ export function Coaching() {
         >
           <div className="w-full h-full" style={{ filter: 'blur(4px) scale(1.05)' }}>
             <YouTubeBackground 
-              videoId="XEc0oXYzQsc"
+              videoId="6RpFtiMqaOw"
               className="w-full h-full"
             />
           </div>
@@ -193,7 +194,9 @@ export function Coaching() {
                   </motion.button>
                 </Link>
 
-                <motion.button 
+                <motion.button
+                  type="button"
+                  onClick={() => programsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                   className="px-10 py-5 bg-white/90 backdrop-blur-sm border-2 border-sky-300 text-stone-800 font-black text-lg hover:bg-white transition-all rounded-lg flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -222,7 +225,7 @@ export function Coaching() {
       </section>
 
       {/* Packages - Dynamic Layout */}
-      <section className="relative py-32 overflow-hidden bg-[#DCB69A]">
+      <section id="programs" ref={programsRef} className="relative py-32 overflow-hidden bg-[#DCB69A] scroll-mt-24">
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -311,17 +314,16 @@ export function Coaching() {
                       </div>
 
                       {pkg.buttonLink ? (
-                        <motion.a
-                          href={pkg.buttonLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`w-full py-4 bg-gradient-to-r ${pkg.color} text-white font-black text-lg shadow-lg rounded-xl flex items-center justify-center gap-2`}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          {pkg.buttonText}
-                          <ArrowRight className="size-5" />
-                        </motion.a>
+                        <Link to={pkg.buttonLink}>
+                          <motion.button
+                            className={`w-full py-4 bg-gradient-to-r ${pkg.color} text-white font-black text-lg shadow-lg rounded-xl flex items-center justify-center gap-2`}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {pkg.buttonText}
+                            <ArrowRight className="size-5" />
+                          </motion.button>
+                        </Link>
                       ) : (
                         <motion.button 
                           className={`w-full py-4 bg-gradient-to-r ${pkg.color} text-white font-black text-lg shadow-lg rounded-xl flex items-center justify-center gap-2`}

@@ -14,14 +14,14 @@ export function Root() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="mb-6 w-full max-w-[520px] h-32 md:h-40 overflow-hidden flex items-center">
+              <div className="relative mb-6 h-24 md:h-28 w-full max-w-md overflow-hidden">
                 <img
-                  src="/maidenmfrank-footer-logo.png"
-                  alt="maidenmfrank"
-                  className="h-48 md:h-56 w-auto"
+                  src="/mmf%20logo%20trasparent.png"
+                  alt="Maiden Manzanal Frank"
+                  className="absolute left-1/2 top-1/2 w-[2900px] md:w-[3250px] max-w-none -translate-x-1/2 -translate-y-1/2"
                 />
               </div>
-              <p className="text-white/60 max-w-md">
+              <p className="text-white/60 max-w-md text-justify">
                 Empowering leaders and transforming organizations through expert coaching, keynote speaking, and proven frameworks.
               </p>
             </div>
@@ -31,7 +31,8 @@ export function Root() {
               <div className="font-semibold mb-4">Services</div>
               <div className="space-y-2">
                 <Link to="/speaking" className="block text-white/60 hover:text-white transition-colors">Speaking</Link>
-                <Link to="/books" className="block text-white/60 hover:text-white transition-colors">Books</Link>
+                <Link to="/books#additional-resources" className="block text-white/60 hover:text-white transition-colors">Books and Resources</Link>
+                <a href="https://flourish-in-purpose.netlify.app/" target="_blank" rel="noopener noreferrer" className="block pl-6 text-white/60 hover:text-white transition-colors">New Book Preview: Flourish In Purpose</a>
                 <Link to="/coaching" className="block text-white/60 hover:text-white transition-colors">Coaching</Link>
               </div>
             </div>

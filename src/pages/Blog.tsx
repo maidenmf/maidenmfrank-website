@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
 import { Mail, BookOpen } from 'lucide-react';
 import { Link } from 'react-router';
@@ -52,9 +52,6 @@ const jan2026Posts = [
 ];
 
 export function Blog() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-emerald-50 to-amber-50 text-slate-900">
       <section className="relative py-20 lg:py-28 overflow-hidden">
@@ -126,34 +123,26 @@ export function Blog() {
               </p>
             </div>
             <div className="w-full sm:w-auto">
-              {submitted ? (
-                <div className="text-sm font-semibold text-emerald-700">
-                  Thanks — please check your inbox to confirm your subscription.
-                </div>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (email.trim()) setSubmitted(true);
-                  }}
-                  className="flex flex-col sm:flex-row gap-3"
+              <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3" aria-label="Frank Insights subscription coming soon">
+                <input
+                  type="email"
+                  disabled
+                  aria-disabled="true"
+                  placeholder="you@example.com"
+                  className="px-4 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder:text-slate-400 flex-1 min-w-0"
+                  style={{ opacity: 0.6, cursor: 'not-allowed' }}
+                />
+                <button
+                  type="submit"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center px-5 py-2 rounded-lg bg-emerald-500 text-white text-sm font-bold whitespace-nowrap"
+                  style={{ opacity: 0.6, cursor: 'not-allowed' }}
                 >
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className="px-4 py-2 rounded-lg bg-white border border-slate-300 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 flex-1 min-w-0"
-                  />
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center px-5 py-2 rounded-lg bg-emerald-500 text-white text-sm font-bold hover:bg-emerald-400 transition-colors whitespace-nowrap"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
+                  Subscribe
+                </button>
+                <span className="self-center text-sm font-semibold text-emerald-700 whitespace-nowrap">Coming soon</span>
+              </form>
             </div>
           </motion.div>
 

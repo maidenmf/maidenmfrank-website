@@ -8,9 +8,6 @@ export function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [chapterSubmitted, setChapterSubmitted] = useState(false);
-  const [blogEmail, setBlogEmail] = useState('');
-  const [blogSubmitted, setBlogSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,12 +38,6 @@ export function Contact() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChapterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setChapterSubmitted(true);
-    setTimeout(() => setChapterSubmitted(false), 4000);
   };
 
   const contactInfo = [
@@ -110,17 +101,24 @@ export function Contact() {
             className="mb-12"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="text-center lg:text-left">
-                <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[0.9] tracking-tighter mb-4">
-                  Provoke to Connect
+              <div className="text-left">
+                <h1 className="text-5xl sm:text-6xl lg:text-[120px] font-black text-slate-900 leading-[0.9] tracking-tighter mb-8 text-center">
+                  <span className="block">Provoke</span>
+                  <span
+                    className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500"
+                    style={{ transform: 'skewY(-4deg)' }}
+                  >
+                    <span className="block text-center">to</span>
+                    <span className="block text-center">Connect</span>
+                  </span>
                 </h1>
-                <div className="h-2 w-32 lg:w-40 mb-6 rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 shadow-[0_0_30px_rgba(251,191,36,0.6)] mx-auto lg:mx-0" />
-                <p className="text-xl lg:text-2xl text-slate-700 max-w-2xl mx-auto lg:mx-0">
+                <div className="h-2 w-32 lg:w-40 mb-6 rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 shadow-[0_0_30px_rgba(251,191,36,0.6)]" />
+                <p className="text-xl lg:text-2xl text-slate-700 max-w-2xl">
                   Let&apos;s connect — whether it&apos;s a speaking engagement, a strategic partnership, coaching, or a free book sample. I&apos;d love to explore how we can work together.
                 </p>
               </div>
               <div className="flex justify-center lg:justify-end">
-                <div className="relative w-72 sm:w-80 lg:w-96 rounded-3xl overflow-hidden shadow-2xl border border-amber-100 bg-amber-50">
+                <div className="contact-hero-image-card relative w-72 sm:w-80 rounded-3xl overflow-hidden shadow-2xl border border-amber-100 bg-amber-50">
                   <img
                     src={professionalHeadshot}
                     alt="Maiden Manzanal-Frank"
@@ -381,85 +379,12 @@ export function Contact() {
             Free Resources
           </motion.h2>
 
-          {/* Free Chapter - dedicated signup */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-3xl bg-gradient-to-br from-teal-600 via-cyan-700 to-teal-800 p-10 lg:p-14 border-2 border-cyan-400/30 shadow-2xl shadow-teal-900/40"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-cyan-100 text-sm font-semibold mb-6">
-                  <BookOpen className="size-4" />
-                  Provocateurs Not Philanthropists
-                </div>
-                <h3 className="text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-                  Get a free chapter
-                </h3>
-                <p className="text-teal-100/90 text-lg mb-2">
-                  Enter your details below and I'll send you a free chapter of the book so you can start turning good intentions into global impact.
-                </p>
-                <p className="text-cyan-200/80 text-sm">
-                  No spam. Just the chapter and occasional updates.
-                </p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
-                {chapterSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-8 text-center"
-                  >
-                    <div className="size-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="size-8 text-teal-900" />
-                    </div>
-                    <h4 className="text-xl font-black text-white mb-2">You're on the list</h4>
-                    <p className="text-cyan-100/90 text-sm">
-                      Check your inbox for your free chapter. If you don't see it, check spam.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleChapterSubmit} className="space-y-5">
-                    <div>
-                      <label className="block text-sm font-semibold text-white/90 mb-2">Name *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Your name"
-                        className="w-full px-4 py-3 bg-white/15 border border-white/30 text-white placeholder:text-white/50 rounded-lg focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-white/90 mb-2">Email *</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="your@email.com"
-                        className="w-full px-4 py-3 bg-white/15 border border-white/30 text-white placeholder:text-white/50 rounded-lg focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
-                      />
-                    </div>
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-4 bg-white text-teal-800 font-black text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-cyan-200/30 transition-all"
-                    >
-                      <BookOpen className="size-5" />
-                      Send me the free chapter
-                    </motion.button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </motion.div>
-
           {/* The Frank Insights Blog sign-up - Free Resources */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 rounded-3xl bg-gradient-to-br from-slate-800/80 to-cyan-900/30 p-10 lg:p-14 border-2 border-cyan-400/20 shadow-2xl"
+            className="rounded-3xl bg-gradient-to-br from-slate-800/80 to-cyan-900/30 p-10 lg:p-14 border-2 border-cyan-400/20 shadow-2xl"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -478,50 +403,30 @@ export function Contact() {
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
-                {blogSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-8 text-center"
+                <form onSubmit={(e) => e.preventDefault()} className="space-y-5" aria-label="Frank Insights subscription coming soon">
+                  <div>
+                    <label className="block text-sm font-semibold text-white/90 mb-2">Email *</label>
+                    <input
+                      type="email"
+                      disabled
+                      aria-disabled="true"
+                      placeholder="your@email.com"
+                      className="w-full px-4 py-3 bg-white/15 border border-white/30 text-white placeholder:text-white/50 rounded-lg"
+                      style={{ opacity: 0.6, cursor: 'not-allowed' }}
+                    />
+                  </div>
+                  <motion.button
+                    type="submit"
+                    disabled
+                    aria-disabled="true"
+                    className="w-full py-4 bg-cyan-500 text-white font-black text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg"
+                    style={{ opacity: 0.6, cursor: 'not-allowed' }}
                   >
-                    <div className="size-16 bg-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="size-8 text-teal-900" />
-                    </div>
-                    <h4 className="text-xl font-black text-white mb-2">You're on the list</h4>
-                    <p className="text-cyan-100/90 text-sm">
-                      Check your inbox to confirm your subscription for The Frank Insights.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      if (blogEmail.trim()) setBlogSubmitted(true);
-                    }}
-                    className="space-y-5"
-                  >
-                    <div>
-                      <label className="block text-sm font-semibold text-white/90 mb-2">Email *</label>
-                      <input
-                        type="email"
-                        value={blogEmail}
-                        onChange={(e) => setBlogEmail(e.target.value)}
-                        required
-                        placeholder="your@email.com"
-                        className="w-full px-4 py-3 bg-white/15 border border-white/30 text-white placeholder:text-white/50 rounded-lg focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
-                      />
-                    </div>
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-4 bg-cyan-500 text-white font-black text-lg rounded-xl flex items-center justify-center gap-2 shadow-lg hover:bg-cyan-400 transition-all"
-                    >
-                      <Mail className="size-5" />
-                      Subscribe to weekly blog
-                    </motion.button>
-                  </form>
-                )}
+                    <Mail className="size-5" />
+                    Subscribe to weekly blog
+                  </motion.button>
+                  <p className="text-center text-sm font-semibold text-cyan-100/90">Coming soon</p>
+                </form>
               </div>
             </div>
           </motion.div>

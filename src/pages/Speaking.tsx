@@ -21,6 +21,9 @@ import minesParis from 'figma:asset/36e3077cce611e5b19709a7792932c892fdfe475.png
 import ledByCommunity from 'figma:asset/62453349edfde14c7f80017a14862fce732b3f66.png';
 import crownLogo from 'figma:asset/748ab0edc8009258e4999acee3b2570f12c0181f.png';
 import idrac from 'figma:asset/ff24219285982f8a5793202bf331695d02391a57.png';
+import maiden78 from '../assets/Maiden-78.jpg';
+
+const SPEAKER_REEL_URL = 'https://www.youtube.com/watch?v=nL2Los_QlO0';
 
 export function Speaking() {
   const heroRef = useRef<HTMLElement>(null);
@@ -141,7 +144,7 @@ export function Speaking() {
     { src: '/meeting-pro-maiden-2.png', label: 'Photo 2 (Professional portrait)' },
     { src: '/meeting-pro-maiden-3.png', label: 'Photo 3 (Speaking)' },
     { src: '/meeting-pro-maiden-4.png', label: 'Photo 4 (Presenting)' },
-    { src: '/meeting-pro-maiden-5.png', label: 'Photo 5 (Provocateurs presentation)' },
+    { src: maiden78, label: 'Photo 5 (With the book: Provocateurs)' },
   ];
 
   return (
@@ -260,7 +263,7 @@ export function Speaking() {
                 </motion.button>
               </Link>
               <motion.a
-                href="https://www.youtube.com"
+                href={SPEAKER_REEL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-10 py-5 bg-[#e8d5b7]/10 backdrop-blur-sm border-2 border-[#e8d5b7]/30 text-white font-black text-lg hover:bg-[#e8d5b7]/20 transition-all flex items-center justify-center gap-3"
@@ -574,7 +577,7 @@ export function Speaking() {
                   />
                 </div>
                 <div className="absolute -bottom-4 left-6 bg-[#2C1810] text-white px-6 py-3 rounded-full shadow-lg text-sm font-semibold">
-                  Global impact strategist &amp; provocateur for change
+                  Global Impact Advisor &amp; Provocateur for Change
                 </div>
               </div>
             </motion.div>
@@ -773,7 +776,7 @@ export function Speaking() {
       </section>
 
       {/* For Meeting Professionals Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-amber-900/90 via-[#2C1810] to-[#3d2817]">
+      <section id="meeting-professionals" className="relative py-24 overflow-hidden bg-gradient-to-br from-amber-900/90 via-[#2C1810] to-[#3d2817] scroll-mt-24">
         {/* Diagonal striped pattern */}
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'repeating-linear-gradient(45deg, rgba(125, 211, 252, 0.8) 0px, transparent 2px, transparent 12px, rgba(125, 211, 252, 0.8) 14px)',
@@ -827,7 +830,7 @@ export function Speaking() {
           </motion.div>
 
           {/* Resource Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {/* Professional Photos */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -837,7 +840,7 @@ export function Speaking() {
               whileHover={{ y: -10, scale: 1.03 }}
               className="relative group"
             >
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 border-2 border-sky-300/30 hover:border-sky-300/60 transition-all shadow-2xl overflow-hidden"
+              <div className="relative h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 border-2 border-sky-300/30 hover:border-sky-300/60 transition-all shadow-2xl overflow-hidden"
                    style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}>
                 {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-sky-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -901,8 +904,9 @@ export function Speaking() {
               </div>
             </motion.div>
 
-            {/* Biographies */}
-            <motion.div
+            <div className="flex flex-col gap-8">
+              {/* Biographies */}
+              <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -929,21 +933,23 @@ export function Speaking() {
                 </p>
 
                 <div className="relative">
-                  <button className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
-                          style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}>
+                  <a href="/downloads/MMF-Bio.pdf"
+                     download
+                     className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-400 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
+                     style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}>
                     <Download className="size-5" />
-                    Download Bios
-                  </button>
+                    Download Professional Bio
+                  </a>
                 </div>
 
                 {/* Corner accent */}
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-300/30 to-transparent"
                      style={{ clipPath: 'polygon(0% 100%, 100% 100%, 0% 0%)' }} />
               </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Marketing Materials */}
-            <motion.div
+              {/* Marketing Materials */}
+              <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -963,25 +969,35 @@ export function Speaking() {
                 </div>
 
                 <h3 className="relative text-2xl font-black text-white mb-4 text-center">
-                  Marketing Materials
+                  Marketing Materials for Download
                 </h3>
                 <p className="relative text-white/70 text-center mb-6 leading-relaxed">
-                  One-sheets, topic descriptions, and promotional content ready to use.
+                  One-sheet and Topic descriptions ready to use
                 </p>
 
-                <div className="relative">
-                  <button className="w-full px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
-                          style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}>
+                <div className="relative space-y-3">
+                  <a href="/downloads/One-Sheet%20Speaker%20Info.pdf"
+                     download
+                     className="w-full px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
+                     style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}>
                     <Download className="size-5" />
-                    Download Materials
-                  </button>
+                    Download One-Sheet
+                  </a>
+                  <a href="/downloads/Topics%20Descriptions%20PDF.pdf"
+                     download
+                     className="w-full px-6 py-4 bg-gradient-to-r from-sky-400 to-sky-300 text-white font-black flex items-center justify-center gap-3 hover:scale-105 transition-transform shadow-2xl"
+                     style={{ clipPath: 'polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%)' }}>
+                    <Download className="size-5" />
+                    Download Topic Descriptions
+                  </a>
                 </div>
 
                 {/* Corner accent */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sky-300/30 to-transparent"
                      style={{ clipPath: 'polygon(100% 0%, 100% 100%, 0% 0%)' }} />
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
 
           {/* CTA Box */}
@@ -1082,9 +1098,7 @@ export function Speaking() {
                 </motion.button>
               </Link>
               <motion.a
-                href="https://www.youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#meeting-professionals"
                 className="px-14 py-7 bg-[#e8d5b7]/10 backdrop-blur-sm border-4 border-[#e8d5b7]/30 text-white font-black text-2xl hover:bg-[#e8d5b7]/20 transition-all flex items-center justify-center gap-4"
                 style={{ clipPath: 'polygon(0% 5%, 95% 0%, 100% 95%, 5% 100%)' }}
                 whileHover={{ scale: 1.05 }}

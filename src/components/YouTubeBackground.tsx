@@ -8,19 +8,15 @@ interface YouTubeBackgroundProps {
 export function YouTubeBackground({ videoId, className = '' }: YouTubeBackgroundProps) {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerElementRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    let cancelled = false;
 
-    // Initialize player when API is ready
-    (window as any).onYouTubeIframeAPIReady = () => {
-      playerRef.current = new (window as any).YT.Player('youtube-player', {
+    const initializePlayer = () => {
+      if (cancelled || !playerElementRef.current || !(window as any).YT?.Player) return;
+      playerRef.current = new (window as any).YT.Player(playerElementRef.current, {
         videoId: videoId,
         playerVars: {
           autoplay: 1,
@@ -41,13 +37,34 @@ export function YouTubeBackground({ videoId, className = '' }: YouTubeBackground
         },
       });
     };
+
+    if ((window as any).YT?.Player) {
+      initializePlayer();
+    } else {
+      const previousReady = (window as any).onYouTubeIframeAPIReady;
+      (window as any).onYouTubeIframeAPIReady = () => {
+        previousReady?.();
+        initializePlayer();
+      };
+
+      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+      }
+    }
+
+    return () => {
+      cancelled = true;
+      playerRef.current?.destroy?.();
+      playerRef.current = null;
+    };
   }, [videoId]);
 
   const handleUnmute = () => {
     if (playerRef.current && playerRef.current.unMute) {
       playerRef.current.unMute();
       setIsMuted(false);
-      setShowButton(false);
     }
   };
 
@@ -55,7 +72,6 @@ export function YouTubeBackground({ videoId, className = '' }: YouTubeBackground
     if (playerRef.current && playerRef.current.mute) {
       playerRef.current.mute();
       setIsMuted(true);
-      setShowButton(true);
     }
   };
 
@@ -63,7 +79,7 @@ export function YouTubeBackground({ videoId, className = '' }: YouTubeBackground
     <div ref={containerRef} className={`absolute inset-0 overflow-hidden ${className}`}>
       {/* YouTube Player Container */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vh] min-w-[100%] h-[85vw] min-h-[100%]">
-        <div id="youtube-player" className="w-full h-full" />
+        <div ref={playerElementRef} className="w-full h-full" />
       </div>
 
       {/* Unmute/Mute Button */}
